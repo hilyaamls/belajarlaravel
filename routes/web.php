@@ -18,3 +18,21 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('mahasiswa', 'MahasiswaController@index')-> name('mahasiswa');
+Route::get('mahasiswa-create', 'MahasiswaController@create');
+Route::get('mahasiswa-tambah', 'MahasiswaController@tambah')-> name('tambah.mahasiswa');
+Route::post('mahasiswa-simpan', 'MahasiswaController@store')-> name('simpan.mahasiswa');
+
+Route::get('mahasiswal-edit/{id}', 'MahasiswaController@edit')-> name('edit.mahasiswa');
+Route::post('mahasiswa-update/{id}', 'MahasiswaController@update')-> name('update.mahasiswa');
+Route::get('mahasiswa-delete/{id}', 'MahasiswaController@destroy')-> name('delete.mahasiswa');
+
+
+Route::get('makul', 'MakulController@index')-> name('makul');
+Route::get('makul-tambah', 'MakulController@tambah')-> name('tambah.makul');
+Route::post('makul-simpan', 'MakulController@store')-> name('simpan.makul');
+
+Route::get('makul-edit/{id}', 'MakulController@edit')-> name('edit.makul');
+Route::post('makul-update/{id}', 'MakulController@update')-> name('update.makul');
+Route::get('makul-delete/{id}', 'MakulController@destroy')-> name('delete.makul');
