@@ -5,43 +5,41 @@ namespace App\Http\Controllers;
 use App\Mahasiswa;
 use Illuminate\Http\Request;
 use Alert;
+use App\User;
 
 class MahasiswaController extends Controller
 {
     public function index()
     {
-        $mahasiswa = Mahasiswa::all();
+        $mahasiswa = Mahasiswa::with(['user'])->get();
         return view('mahasiswa.index', compact('mahasiswa'));
-    }
-
-    public function create()
-    {
-        return 'Halo saya Create dari Controller Mahasiswa';
-    }
+    } 
 
     public function tambah()
     {
-        return view('mahasiswa.tambah');    
+        $user = User::all();
+        return view('mahasiswa.tambah', compact('user'));
     }
 
     public function store(Request $request)
     {
         Mahasiswa::create($request->all()); 
-        Alert::alert()->success('Sukses!','Data Berhasil Diubah');       
+        alert()->success('Sukses!','Data Berhasil Diubah');       
         return redirect()->route('mahasiswa');
     }
 
     public function edit($id)
     {
+        $user = User::all();
         $mahasiswa = Mahasiswa::find($id);
-        return view('mahasiswa.edit', compact('mahasiswa'));
+        return view('mahasiswa.edit', compact('mahasiswa', 'user'));
     }
 
     public function update(Request $request, $id)
     {
         $mahasiswa = Mahasiswa::find($id);
         $mahasiswa->update($request->all());
-        Alert::toast('Selamat, Data Berhasil Diubah','success');
+        toast('Selamat, Data Berhasil Diubah','success');
         return redirect()->route('mahasiswa');
     }
 
@@ -49,7 +47,7 @@ class MahasiswaController extends Controller
     {
         $mahasiswa = Mahasiswa::find($id);
         $mahasiswa->delete();
-        Alert::toast('Sukses! Data Berhasil Dihapus','success');
+        toast('Sukses! Data Berhasil Dihapus','success');
         return redirect()->route('mahasiswa');
     }
 }

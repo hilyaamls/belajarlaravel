@@ -1,31 +1,37 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Input Mahasiswa
+                <div class="card-header">Edit Data Mahasiswa
                 </div>
 
                 <div class="card-body">
                 <form action="{{route('update.mahasiswa', $mahasiswa->id)}}" method ="POST" class="form-item" enctype="multipart/form-data">
-                    @csrf
+                    
+                @csrf
+                    <div class="form-group">
+                        <label for="">Nama Mahasiswa</label>
+                        <select name="user_id" id="user_id" class="form-control col-md-9">
+                            <option value="" disabled selected>--Pilih User--</option>
+                            @foreach ($user as $u)
+                                <option value="{{ $u->id }}" {{ $mahasiswa->user_id == $u->id ? 'selected' : '' }}> {{ $u->name }} </option>
+                            @endforeach
+                        </select>
+                    </div>
+
                     <div class="form-group">
                         <label for="npm">NPM</label>
-                        <input type="text" name="npm" class="form-control col-md-9" placeholder="Masukkan NPM" value = "{{is_null
+                        <input type="number" name="npm" class="form-control col-md-9" placeholder="Masukkan NPM" maxlength="8" value = "{{is_null
                         ($mahasiswa) ? '' : $mahasiswa->npm}}">
                     </div>
 
                     <div class="form-group">
-                        <label for="nama_mahasiswa">Nama</label>
-                        <input type="text" name="nama_mahasiswa" class="form-control col-md-9" placeholder="Masukkan Nama Lengkap" value = "{{is_null
-                        ($mahasiswa) ? '' : $mahasiswa->nama_mahasiswa}}">
-                    </div>
-
-                    <div class="form-group">
                         <label for="tempat_lahir">Tempat Lahir</label>
-                        <input type="text" name="tempat_lahir" class="form-control col-md-9" placeholder="Masukkan Tempat Lahir" value = "{{is_null
+                        <input type="text" name="tempat_lahir" class="form-control col-md-9" placeholder="Masukkan Tempat Lahir"value = "{{is_null
                         ($mahasiswa) ? '' : $mahasiswa->tempat_lahir}}">
                     </div>
 
@@ -37,30 +43,30 @@
 
                     <div class="form-group">
                         <tr><label for="jenis_kelamin">Jenis Kelamin</label><br/>
-                        <td><input type="radio" name="jenis_kelamin" value="L" id="laki" <?php if($mahasiswa['jenis_kelamin']=='L') echo 'checked' ?>>
-                        <label for="laki">Laki-Laki</label><br/>
-                        
-                        <input type="radio" name="jenis_kelamin" value="P" id="perempuan" <?php if($mahasiswa['jenis_kelamin']=='P') echo 'checked' ?>>
-                        <label for="perempuan">Perempuan</label></td></tr>
+                        <select name="jenis_kelamin" id="jenis_kelamin" class="form-control col-md-9">
+                            <option value="" disabled selected>--Pilih Jenis Kelamin--</option>
+                            <option value="L" {{ $mahasiswa->jenis_kelamin == 'L' ? 'selected' : '' }}> Laki-Laki </option>
+                            <option value="P" {{$mahasiswa->jenis_kelamin == 'P' ? 'selected' : '' }}> Perempuan </option>
+                        </select>
                     </div>             
 
                     <div class="form-group">
                         <label for="telepon">Telepon</label>
-                        <input type="text" name="telepon" class="form-control col-md-9" placeholder="Masukkan telepon" value = "{{is_null
+                        <input type="number" name="telepon" class="form-control col-md-9" placeholder="Masukkan Nomor Telepon" maxlength="15" value = "{{is_null
                         ($mahasiswa) ? '' : $mahasiswa->telepon}}">
                     </div>    
                     
                     <div class="form-group">
                         <label for="alamat">Alamat</label>
-                        <input type="text" name="alamat" class="form-control col-md-9" placeholder="Masukkan Alamat" value = "{{is_null
-                        ($mahasiswa) ? '' : $mahasiswa->alamat}}">
+                        <textarea name="alamat" id="alamat" cols="2" rows="3" class="form-control col-md-9" style="resize:none">
+                        "{{is_null($mahasiswa) ? '' : $mahasiswa->alamat}}"
+                        </textarea>
                     </div>  
 
                     <button type="submit" class="btn btn-primary" name="simpan">SIMPAN</button>
                     <a href="{{route('mahasiswa')}}" class="btn btn-danger">BATAL</a>
                 </form>
                     </div>
-            
                 </div>
             </div>
         </div>

@@ -6,20 +6,25 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">Input Mahasiswa
-                <a href="#" class="btn btn-md btn-primary float-right">Back</a> 
+                <a href="{{route('mahasiswa')}}" class="btn btn-md btn-primary float-right">Back</a> 
                 </div>
 
                 <div class="card-body">
                 <form action="{{route('simpan.mahasiswa')}}" method ="POST" class="form-item" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label for="npm">NPM</label>
-                        <input type="text" name="npm" class="form-control col-md-9" placeholder="Masukkan NPM">
+                        <label for="">Nama Mahasiswa</label>
+                        <select name="user_id" id="user_id" class="form-control col-md-9">
+                            <option value="" disabled selected>--Pilih User--</option>
+                            @foreach ($user as $u)
+                                <option value="{{ $u->id }}"> {{ $u->name}} </option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="nama_mahasiswa">Nama</label>
-                        <input type="text" name="nama_mahasiswa" class="form-control col-md-9" placeholder="Masukkan Nama Lengkap">
+                        <label for="npm">NPM</label>
+                        <input type="number" name="npm" class="form-control col-md-9" placeholder="Masukkan NPM" maxlength="8">
                     </div>
 
                     <div class="form-group">
@@ -34,21 +39,21 @@
 
                     <div class="form-group">
                         <tr><label for="jenis_kelamin">Jenis Kelamin</label><br/>
-                        <td><input type="radio" name="jenis_kelamin" value="L" id="laki">
-                        <label for="laki">Laki-Laki</label><br/>
-                        
-                        <input type="radio" name="jenis_kelamin" value="P" id="perempuan"/>
-                        <label for="perempuan">Perempuan</label></td></tr>
+                        <select name="jenis_kelamin" id="jenis_kelamin" class="form-control col-md-9">
+                            <option value="" disabled selected>--Pilih Jenis Kelamin--</option>
+                            <option value="L">Laki-Laki</option>
+                            <option value="P">Perempuan</option>
+                        </select>
                     </div>             
 
                     <div class="form-group">
                         <label for="telepon">Telepon</label>
-                        <input type="text" name="telepon" class="form-control col-md-9" placeholder="Masukkan Nomor Telepon">
+                        <input type="number" name="telepon" class="form-control col-md-9" placeholder="Masukkan Nomor Telepon" maxlength="15">
                     </div>    
                     
                     <div class="form-group">
                         <label for="alamat">Alamat</label>
-                        <input type="text" name="alamat" class="form-control col-md-9" placeholder="Masukkan Alamat Rumah">
+                        <textarea name="alamat" id="alamat" cols="2" rows="3" class="form-control col-md-9" style="resize:none"></textarea>
                     </div>  
 
                     <button type="submit" class="btn btn-primary" name="simpan">SIMPAN</button>

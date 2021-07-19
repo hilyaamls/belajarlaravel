@@ -13,7 +13,7 @@
                     <div class="table-responsive">
                     <table class="table table-bordered">
                         <tr>
-                            <th>No</th>
+                            <th>No. </th>
                             <th>NPM</th>
                             <th>Nama Lengkap</th>
                             <th>TTL</th>
@@ -23,13 +23,17 @@
                             <th>Aksi</th>
                         </tr>
 
+                        @php
+                            $no = 1;
+                        @endphp
+
                         @foreach ($mahasiswa as $mhs)
                         <tr>
-                            <td> {{ $mhs->id }} </td>
+                            <td> {{ $no++ }} </td>
                             <td> {{ $mhs->npm }} </td>
-                            <td> {{ $mhs->nama_mahasiswa }} </td>
+                            <td> {{ $mhs->user->name }} </td>
                             <td> {{ $mhs->tempat_lahir.','.$mhs->tgl_lahir }} </td>
-                            <td> {{ $mhs->jenis_kelamin }} </td>
+                            <td> {{ $mhs->jenis_kelamin == 'L' ? 'Laki-Laki' : 'Perempuan' }} </td>
                             <td> {{ $mhs->telepon }} </td>
                             <td> {{ $mhs->alamat }} </td>
                             <td>
