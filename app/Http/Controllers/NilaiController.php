@@ -26,7 +26,7 @@ class NilaiController extends Controller
     public function store(Request $request)
     {
         Nilai::create($request->all()); 
-        alert()->success('Sukses!','Data Berhasil Diubah');       
+        alert()->success('Sukses!','Data Berhasil Disimpan');       
         return redirect()->route('nilai');
     }
 

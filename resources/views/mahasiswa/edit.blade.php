@@ -58,8 +58,7 @@
                     
                     <div class="form-group">
                         <label for="alamat">Alamat</label>
-                        <textarea name="alamat" id="alamat" cols="2" rows="3" class="form-control col-md-9" style="resize:none">
-                        "{{is_null($mahasiswa) ? '' : $mahasiswa->alamat}}"
+                        <textarea name="alamat" id="alamat" cols="2" rows="3" class="form-control col-md-9" style="resize:none">"{{is_null($mahasiswa) ? '' : $mahasiswa->alamat}}"
                         </textarea>
                     </div>  
 

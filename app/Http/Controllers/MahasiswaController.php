@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Mahasiswa;
+use App\User;
 use Illuminate\Http\Request;
 use Alert;
-use App\User;
+
 
 class MahasiswaController extends Controller
 {
@@ -24,7 +25,7 @@ class MahasiswaController extends Controller
     public function store(Request $request)
     {
         Mahasiswa::create($request->all()); 
-        alert()->success('Sukses!','Data Berhasil Diubah');       
+        alert()->success('Sukses!','Data Berhasil Disimpan');       
         return redirect()->route('mahasiswa');
     }
 

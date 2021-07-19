@@ -23,7 +23,7 @@ class MakulController extends Controller
     public function store(Request $request)
     {
         Makul::create($request->all());
-        Alert::alert()->success('Sukses!','Data Berhasil Diubah');    
+        alert()->success('Sukses!','Data Berhasil Disimpan');    
         return redirect()->route('makul');
     }
 
@@ -37,7 +37,7 @@ class MakulController extends Controller
     {
         $makul = Makul::find($id);
         $makul->update($request->all());
-        Alert::toast('Selamat, Data Berhasil Diubah','success');
+        toast('Selamat, Data Berhasil Diubah','success');
         return redirect()->route('makul');
     }
 
@@ -45,7 +45,7 @@ class MakulController extends Controller
     {
         $makul = Makul::find($id);
         $makul->delete();
-        Alert::toast('Sukses! Data Berhasil Dihapus','success');
+        toast('Sukses! Data Berhasil Dihapus','success');
         return redirect()->route('makul');
     }
 }
